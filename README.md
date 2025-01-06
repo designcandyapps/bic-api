@@ -1,4 +1,6 @@
-# Nuxt 3 Minimal Starter
+# BeInCrypto News/Analyse API
+
+![image](https://github.com/user-attachments/assets/ec8112df-57b9-4045-8cd0-7d74f5c4ba80)
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
