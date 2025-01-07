@@ -27,6 +27,7 @@ $ npm run dev
 > **Note**
 > If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
 
+Finally, change the ``.env.example`` filename to  ``.env`` and fulfill the ``BIC_URL`` with a valid BeInCrypto URL that contain a list of articles, similar to: https://beincrypto.com/analysis/.
 
 ## How to use
 
