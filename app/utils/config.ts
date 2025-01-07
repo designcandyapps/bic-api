@@ -1,8 +1,10 @@
-import puppeteer from "puppeteer-core";
-// import chromium from "@sparticuz/chromium-min"
-import chromium from "@sparticuz/chromium";
+import puppeteerCore from "puppeteer-core";
+import chromium from "@sparticuz/chromium-min"
+// import chromium from "@sparticuz/chromium";
 
 const DEFAULT_PAGE_TIMEOUT_MS = 60000;
+const CHROMIUM_PATH =
+  "https://vomrghiulbmrfvmhlflk.supabase.co/storage/v1/object/public/chromium-pack/chromium-v123.0.0-pack.tar";
 
 export const log = (level: 'info' | 'warn' | 'error', message: string, error?: Error) => {
   const timestamp = new Date().toISOString();
@@ -12,11 +14,12 @@ export const log = (level: 'info' | 'warn' | 'error', message: string, error?: E
 };
 
 export const connectBrowser = async (url: string) => {
-  const executablePath = await chromium.executablePath();
   chromium.setHeadlessMode = true
   chromium.setGraphicsMode = false
 
-  const browser = await puppeteer.launch({
+  const executablePath = await chromium.executablePath(CHROMIUM_PATH);
+
+  const browser = await puppeteerCore.launch({
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
     executablePath,
