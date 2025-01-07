@@ -17,4 +17,22 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  runtimeConfig: {
+    nodeEnv: process.env.NODE_ENV,
+    public: {
+      apiBaseURL: process.env.NODE_ENV === "production"
+        ? 'https://bic-api.vercel.app/'
+        : "http://localhost:3000"
+    }
+  },
+
+  nitro: {
+    experimental: {
+      openAPI: true,
+    },
+    routeRules: {
+      "/api/**": { cors: true },
+    },
+  },
 })
