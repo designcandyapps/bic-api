@@ -1,77 +1,59 @@
 # BeInCrypto News/Analyse API
 
+<h4 align="center">A web scraper and API built with Puppeteer and Nuxt 3 (powered by Nitro) to fetch news and crypto analysis from <a href="https://beincrypto.com/" target="_blank">BeInCrypto</a>. Deployed on Vercel.</h4>
+
 ![image](https://github.com/user-attachments/assets/ec8112df-57b9-4045-8cd0-7d74f5c4ba80)
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+(Simple sketch of the app flow)
 
-## Setup
+## How To Run
 
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
 ```bash
-# npm
-npm run dev
+# Clone this repository
+$ git clone https://github.com/cn-2k/bic-api
 
-# pnpm
-pnpm run dev
+# Go into the repository
+$ cd bic-api
 
-# yarn
-yarn dev
+# Install dependencies
+$ npm install
 
-# bun
-bun run dev
+# Run the dev server
+$ npm run dev
 ```
 
-## Production
+> **Note**
+> If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
 
-Build the application for production:
 
-```bash
-# npm
-npm run build
+## How to use
 
-# pnpm
-pnpm run build
+This project is basically an API so you can run locally or use the demo URL that I've provided on Vercel, see the endpoints avaiable to use:
 
-# yarn
-yarn build
 
-# bun
-bun run build
-```
+### API Endpoints:
 
-Locally preview production build:
+``/api/articles`` - List the recent articles or news provided by the env. variable ``BIC_URL``, make sure to provide a correct URL, in my case I've used https://br.beincrypto.com/analise-bitcoin/.
 
-```bash
-# npm
-npm run preview
+![image](https://github.com/user-attachments/assets/ce10712a-ee0c-4dfc-8854-aff62c2914cf)
 
-# pnpm
-pnpm run preview
 
-# yarn
-yarn preview
+``/api/articles/content`` - Extracts the content of a specific article by passing the article link as a query parameter.
 
-# bun
-bun run preview
-```
+![image](https://github.com/user-attachments/assets/fbcf84d9-2b15-4da2-ba5b-9a02db908d62)
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Credits
+
+This software uses the following open source packages:
+
+- [Nuxt](https://www.nuxt.com)
+- [Node.js](https://nodejs.org/)
+- [Puppeteer](https://pptr.dev/)
+- [@sparticuz/chromium](https://github.com/Sparticuz/chromium)
+
+## License
+
+MIT
