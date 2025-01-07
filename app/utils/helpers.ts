@@ -1,4 +1,4 @@
-import type { Page } from 'puppeteer';
+import type { Page } from 'puppeteer-core';
 import { log } from './config';
 
 export const parseBeInCryptoArticles = async (
@@ -29,30 +29,6 @@ export const parseBeInCryptoArticles = async (
   });
 
   return articles;
-};
-
-export const goToFirstArticle = async (page: Page) => {
-  const articles = await parseBeInCryptoArticles(page);
-
-  if (articles.length === 0) {
-    throw new Error('No articles found to navigate to.');
-  }
-
-  const firstArticleLink = articles[0]!.link;
-
-  if (!firstArticleLink) {
-    throw new Error('The first article does not contain a valid link.');
-  }
-
-  console.log(`Navigating to the first article: ${firstArticleLink}`);
-
-  await page.goto(firstArticleLink, { waitUntil: 'networkidle2' });
-
-  console.log(`Successfully navigated to: ${firstArticleLink}`);
-
-  const data = await getArticleContent(page, firstArticleLink);
-
-  return { data }
 };
 
 export const extractArticleContent = async (page: Page): Promise<string> => {

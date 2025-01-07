@@ -8,23 +8,20 @@ export default defineEventHandler(async (event) => {
 
   try {
     await page.waitForSelector('#bic-main-content', { visible: true });
-    console.log('Conteúdo da página carregado');
 
     // const articlesContent = await getAllArticlesContent(page);
     const articles = await parseBeInCryptoArticles(page)
-
-    await page.browser().close();
 
     return {
       data: articles,
     };
   } catch (error) {
-    console.error('Erro ao extrair os artigos:', error);
+    console.error('error scrapping articles:', error);
     await page.browser().close();
 
     return {
       success: false,
-      error: 'Ocorreu um erro ao processar os artigos.',
+      error: 'An error has occurred.',
     };
   }
 });

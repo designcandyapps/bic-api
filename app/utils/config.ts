@@ -1,4 +1,6 @@
-import puppeteer from 'puppeteer';
+import puppeteer from "puppeteer-core";
+// import chromium from "@sparticuz/chromium-min"
+import chromium from "@sparticuz/chromium";
 
 const DEFAULT_PAGE_TIMEOUT_MS = 60000;
 
@@ -10,31 +12,21 @@ export const log = (level: 'info' | 'warn' | 'error', message: string, error?: E
 };
 
 export const connectBrowser = async (url: string) => {
-  const browser = process.env.BROWSER_WS
-    ? await puppeteer.connect({
-      browserWSEndpoint: process.env.BROWSER_WS,
-    })
-    : await puppeteer.launch({
-      headless: true,
-    });
+  const executablePath = await chromium.executablePath();
+  chromium.setHeadlessMode = true
+  chromium.setGraphicsMode = false
+
+  const browser = await puppeteer.launch({
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath,
+    headless: chromium.headless,
+    acceptInsecureCerts: true
+  });
 
   const page = await browser.newPage();
 
   page.setDefaultTimeout(DEFAULT_PAGE_TIMEOUT_MS);
-
-  if (process.env.BROWSER_WS) {
-    const cdpSession = await page.createCDPSession();
-    const {
-      frameTree: { frame },
-    } = await cdpSession.send('Page.getFrameTree');
-
-    // @ts-expect-error
-    const response: { url: string } = await cdpSession.send('Page.inspect', {
-      frameId: frame.id,
-    });
-
-    log('info', `Inspect session at ${response.url}`);
-  }
 
   await page.goto(url, {
     waitUntil: 'domcontentloaded',

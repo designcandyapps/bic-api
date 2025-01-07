@@ -13,18 +13,16 @@ export default defineEventHandler(async (event) => {
 
     const articleContent = await getArticleContent(page, String(query.link))
 
-    await page.browser().close();
-
     return {
       data: articleContent,
     };
   } catch (error) {
-    console.error('Erro ao extrair os artigos:', error);
+    console.error('error scrapping article content:', error);
     await page.browser().close();
 
     return {
       success: false,
-      error: 'Ocorreu um erro ao processar os artigos.',
+      error: 'An error has occurred.',
     };
   }
 });
