@@ -45,7 +45,7 @@ export const extractArticleContent = async (page: Page): Promise<string> => {
 
 export const getArticleContent = async (page: Page, articleLink: string): Promise<{ title: string; link: string; content: string }> => {
   log('info', `Acessando o artigo no link: ${articleLink}`);
-  await page.goto(articleLink, { waitUntil: 'networkidle2' });
+  await page.goto(articleLink);
 
   const title = await page.title();
 
